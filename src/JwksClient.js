@@ -40,8 +40,8 @@ class JwksClient {
         fetcher: this.options.fetcher
       });
 
-      logger('Keys:', res.keys);
-      return res.keys;
+      logger('Keys:', res);
+      return res;
     } catch (err) {
       const { errorMsg } = err;
       logger('Failure:', errorMsg || err);
