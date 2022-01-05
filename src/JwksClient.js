@@ -40,8 +40,17 @@ class JwksClient {
         fetcher: this.options.fetcher
       });
 
-      logger('Keys:', res);
-      return res;
+      let keys = []
+      for (var kid in res) {
+        keys.push({
+          kid: kid,
+          alg: "RS256",
+          publicKey: res[kid]
+        })
+      }
+
+      logger('Keys:', keys);
+      return keys;
     } catch (err) {
       const { errorMsg } = err;
       logger('Failure:', errorMsg || err);
